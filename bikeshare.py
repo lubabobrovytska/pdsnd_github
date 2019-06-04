@@ -6,7 +6,7 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
-MONTHS = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
+AVAILABLE_MONTHS = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
 
 def get_filters():
     """
@@ -29,7 +29,7 @@ def get_filters():
     # TO DO: get user input for month (all, january, february, ... , june)
     while True:
         month = input('To filter the data by month enter: January, February, March, April, May, June; otherwise enter: all\n').lower()
-        if month in MONTHS:
+        if month in AVAILABLE_MONTHS:
             break
         else:
             print('You enterd wrong month')
@@ -70,8 +70,8 @@ def load_data(city, month, day):
 
     # filter by month if applicable
     if month != 'all':
-        # use the index of the MONTHS list to get the corresponding int
-        month_num = MONTHS.index(month)    # january index is 1 in the list 
+        # use the index of the AVAILABLE_MONTHS list to get the corresponding int
+        month_num = AVAILABLE_MONTHS.index(month)    # january index is 1 in the list 
     
         # filter by month to create the new dataframe
         df = df[df['Month'] == month_num]       # df = df.loc[df['month'] == month_num]
@@ -93,7 +93,7 @@ def time_stats(df):
     no_month_filter = len(df['Month'].unique()) > 1
     if no_month_filter:                # display only if if no month filter applied
         month_num = df['Month'].mode()[0]
-        print('The most common month is:', MONTHS[month_num].title())
+        print('The most common month is:', AVAILABLE_MONTHS[month_num].title())
 
     # TO DO: display the most common day of week
     no_day_filter = len(df['Day of Week'].unique()) > 1
