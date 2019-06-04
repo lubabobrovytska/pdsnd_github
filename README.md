@@ -17,5 +17,5 @@ The files should be located in the same directory where Python script
 file is located
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
+[Link to stackoverflow blogpost](https://stackoverflow.com/questions)
 
