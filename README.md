@@ -1,5 +1,5 @@
 ### Date created
-The **bikeshare** project was created on May 10, 2019
+The **bikeshare** project was created on May 07, 2019
 The remote GitHub repository for this project was created on June 3, 2019
 
 ### Project Title
