@@ -6,7 +6,7 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
-MONTHS = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
+AVAILABLE_MONTHS = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
 
 def get_filters():
     """
@@ -29,7 +29,7 @@ def get_filters():
     # get user input for month (all, january, february, ... , june)
     while True:
         month = input('To filter the data by month enter: January, February, March, April, May, June; otherwise enter: all\n').lower()
-        if month in MONTHS:
+        if month in AVAILABLE_MONTHS:
             break
         else:
             print('You enterd wrong month')
@@ -70,8 +70,8 @@ def load_data(city, month, day):
 
     # filter by month if applicable
     if month != 'all':
-        # use the index of the MONTHS list to get the corresponding int
-        month_num = MONTHS.index(month)    # january index is 1 in the list 
+        # use the index of the AVAILABLE_MONTHS list to get the corresponding int
+        month_num = AVAILABLE_MONTHS.index(month)    # january index is 1 in the list 
     
         # filter by month to create the new dataframe
         df = df[df['Month'] == month_num]       # df = df.loc[df['month'] == month_num]
@@ -93,7 +93,7 @@ def time_stats(df):
     no_month_filter = len(df['Month'].unique()) > 1
     if no_month_filter:                # display only if if no month filter applied
         month_num = df['Month'].mode()[0]
-        print('The most common month is:', MONTHS[month_num].title())
+        print('The most common month is:', AVAILABLE_MONTHS[month_num].title())
 
     # display the most common day of week
     no_day_filter = len(df['Day of Week'].unique()) > 1
@@ -125,8 +125,7 @@ def station_stats(df):
     print('The most commonly used end station:', end_station)
 
     # display most frequent combination of start station and end station trip
-    df['Start End Combination'] = 'from ' + df['Start Station'] + ' to ' + df['End Station']
-
+    df['Start End Combination'] = 'Start: ' + df['Start Station'] + '; End: ' + df['End Station']
     start_end_combination_value = df['Start End Combination'].value_counts().index[0]
     start_end_combination_counts = df['Start End Combination'].value_counts()[0]
     print('\nThe most frequent combination of start station and end station trip:')
@@ -166,7 +165,8 @@ def trip_duration_stats(df):
     # display total travel time
     total_travel_time = df['Trip Duration'].sum()
     formatted_travel_time = seconds_to_days(total_travel_time)
-    print('Total travel time: ', formatted_travel_time)
+    print('Total travel time (seconds): ', total_travel_time)
+    print('Total travel time (days): ', formatted_travel_time)
 
     # display mean travel time
     number_of_values = df['Trip Duration'].count()
