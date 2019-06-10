@@ -177,6 +177,10 @@ def trip_duration_stats(df):
     longest_travel_time = df['Trip Duration'].max()
     print('\nThe longest travel time (seconds):', longest_travel_time)
 
+    # display the shortest travel time
+    shortest_travel_time = df['Trip Duration'].min()
+    print('The shortest travel time (seconds):', shortest_travel_time)
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
