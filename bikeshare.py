@@ -176,10 +176,17 @@ def trip_duration_stats(df):
     # display the longest travel time
     longest_travel_time = df['Trip Duration'].max()
     print('\nThe longest travel time (seconds):', longest_travel_time)
+    
+    max_duration_idx = df['Trip Duration'].idxmax()
+    print(df['Start End Combination'].iloc[max_duration_idx])
+    print("debug: max_duration_idx = ", max_duration_idx)
 
     # display the shortest travel time
     shortest_travel_time = df['Trip Duration'].min()
-    print('The shortest travel time (seconds):', shortest_travel_time)
+    print('\nThe shortest travel time (seconds):', shortest_travel_time)
+    min_duration_idx = df['Trip Duration'].idxmin()
+    print(df['Start End Combination'].iloc[min_duration_idx])
+    print("debug: min_duration_idx = ", min_duration_idx)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
